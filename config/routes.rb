@@ -5,6 +5,6 @@ Rails.application.routes.draw do
 
   resources :users, only: [] do
     resources :rentals, only: [:index, :post]
-    get "recomendations", on: :member
+    get "recommendations", on: :member
   end
 end
