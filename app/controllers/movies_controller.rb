@@ -10,13 +10,4 @@ class MoviesController < ApplicationController
     @recommendations = RecommendationEngine.new(favorite_movies).recommendations
     render json: @recommendations
   end
-
-  def rent
-    user = User.find(params[:user_id])
-    movie = Movie.find(params[:id])
-    movie.available_copies -= 1
-    movie.save
-    user.rented << movie
-    render json: movie
-  end
 end
