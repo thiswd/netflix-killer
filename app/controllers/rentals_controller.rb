@@ -4,7 +4,7 @@ class RentalsController < ApplicationController
 
   end
 
-  def recommendations
+  def create
 
   end
 end
