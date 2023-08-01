@@ -28,9 +28,9 @@ This endpoint retrieves all the movies that a user has currently rented. The use
 
 ### 4. `POST /users/:user_id/rentals`
 
-This endpoint allows a user to rent a movie. The user is identified by the `user_id` parameter and the movie by the `id` parameter in the URL. The movie to be rented should be sent in the body of the request.
+This endpoint allows a user to rent a movie. The user is identified by the `user_id` parameter and the movie to be rented should be sent in the body of the request.
 
-If successful, it reduces the number of `available_copies` of the movie by 1 and adds the movie to the user's `rented` movies. The response is a JSON object of the rented movie.
+If successful, it reduces the number of `available_copies` of the movie by 1 and adds the movie to the user's `rented_movies`. The response is a JSON object of the rented movie.
 
 ## Your Task
 
