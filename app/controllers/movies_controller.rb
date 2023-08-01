@@ -14,13 +14,4 @@ class MoviesController < ApplicationController
     @rented = User.find(params[:user_id]).rented
     render json: @rented
   end
-
-  def rent
-    user = User.find(params[:user_id])
-    movie = Movie.find(params[:id])
-    movie.available_copies -= 1
-    movie.save
-    user.rented << movie
-    render json: movie
-  end
 end
