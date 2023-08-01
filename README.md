@@ -18,17 +18,17 @@ The project also includes a seed file that pre-populates the database with users
 
 This endpoint retrieves all the movies in the database and returns them in JSON format. Each movie object includes its `id`, `title`, `genre`, `rating`, and the number of `available_copies`.
 
-### 2. `GET /movies/recommendations?user_id=<user_id>`
+### 2. `GET /users/:user_id/recommendations`
 
-This endpoint generates a list of movie recommendations for a given user. It uses a basic recommendation engine that takes the user's favorite movies as input and generates recommendations based on those favorites. The response is a JSON array of recommended movie objects.
+This endpoint generates a list of movie recommendations for a given user identified by the `:user_id`. It uses a basic recommendation engine that takes the user's favorite movies as input and generates recommendations based on those favorites. The response is a JSON array of recommended movie objects.
 
-### 3. `GET /movies/user_rented_movies?user_id=<user_id>`
+### 3. `GET /users/:user_id/rentals`
 
-This endpoint retrieves all the movies that a user has currently rented. The user is identified by the `user_id` parameter in the URL. The response is a JSON array of movie objects that the user has rented.
+This endpoint retrieves all the movies that a user has currently rented. The user is identified by the `:user_id` parameter in the URL. The response is a JSON array of movie objects that the user has rented.
 
-### 4. `GET /movies/<movie_id>/rent?user_id=<user_id>`
+### 4. `POST /users/:user_id/rentals`
 
-This endpoint allows a user to rent a movie. The user is identified by the `user_id` parameter and the movie by the `id` parameter in the URL. 
+This endpoint allows a user to rent a movie. The user is identified by the `user_id` parameter and the movie by the `id` parameter in the URL. The movie to be rented should be sent in the body of the request.
 
 If successful, it reduces the number of `available_copies` of the movie by 1 and adds the movie to the user's `rented` movies. The response is a JSON object of the rented movie.
 
