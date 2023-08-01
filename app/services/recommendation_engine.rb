@@ -1,5 +1,5 @@
 class RecommendationEngine
-  attr_attribute :user
+  attr_reader :user
 
   def initialize(user)
     @user = user
