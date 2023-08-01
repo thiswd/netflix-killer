@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :movies, only: %i[index]
 
   resources :users, only: [] do
-    resources :rentals, only: [:index, :post]
+    resources :rentals, only: [:index, :create]
     get "recommendations", on: :member
   end
 end
