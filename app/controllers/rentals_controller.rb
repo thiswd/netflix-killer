@@ -6,12 +6,12 @@ class RentalsController < ApplicationController
   end
 
   def create
-    result = RentMovieService.new(@user, movie_id).call
+    rented_movie = RentMovieService.new(@user, movie_id).call
 
-    if result[:error]
-      render json: { error: result[:error] }, status: :unprocessable_entity
+    if rented_movie[:error]
+      render json: { error: rented_movie[:error] }, status: :unprocessable_entity
     else
-      render json: result, status: :updated
+      render json: rented_movie, status: :created
     end
   end
 

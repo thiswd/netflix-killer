@@ -13,7 +13,6 @@ class RentMovieService
     ActiveRecord::Base.transaction do
       movie.update!(available_copies: movie.available_copies - 1)
       user.rentals.create!(movie: movie)
-      return movie
     end
   rescue ActiveRecord::RecordInvalid => e
     { error: e.message }
