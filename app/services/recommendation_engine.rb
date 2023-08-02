@@ -1,23 +1,27 @@
 class RecommendationEngine
-  def initialize(favorite_movies)
-    @favorite_movies = favorite_movies
+  attr_reader :user
+
+  def initialize(user)
+    @user = user
   end
 
-  def recommendations
-    movie_titles = get_movie_names(@favorite_movies)
-    genres = Movie.where(title: movie_titles).pluck(:genre)
-    common_genres = genres.group_by{ |e| e }.sort_by{ |k, v| -v.length }.map(&:first).take(3)
-    Movie.where(genre: common_genres).order(rating: :desc).limit(10)
+  def call
+    common_genres = fetch_common_genres
+    Movie.where(genre: common_genres)
+      .where.not(id: @user.favorites.select(:id))
+      .where.not(id: @user.rented.select(:id))
+      .order(rating: :desc)
+      .limit(10)
   end
 
   private
 
-  def get_movie_names(movies)
-    names = []
-    @favorite_movies.each do |movie|
-      names << movie.title
-    end
-
-    return names
+  def fetch_common_genres
+    user.favorites
+      .group(:genre)
+      .order('count_genre desc')
+      .limit(3)
+      .count(:genre)
+      .keys
   end
 end
