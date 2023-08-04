@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   root "movies#index"
 
-  resources :movies, only: %i[index] do
-    get :recommendations, on: :collection
-    get :user_rented_movies, on: :collection
-    get :rent, on: :member
+  resources :movies, only: %i[index]
+
+  resources :users, only: [] do
+    resources :rentals, only: [:index, :create]
+    get "recommendations", on: :member
   end
 end
