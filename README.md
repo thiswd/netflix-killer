@@ -24,7 +24,7 @@ Pagination and sorting parameters are supported:
 `order_by`: The field to sort the records by (default is `id`).
 `order_direction`: The direction to sort the records in (`asc` for ascending, `desc` for descending; default is `asc`).
 
-### 2. `GET /movies/recommendations?user_id=<user_id>`
+### 2. `GET /movies/:user_id/recommendations`
 
 This endpoint generates a list of movie recommendations for a given user identified by the `:user_id`. It uses a basic recommendation engine that takes the user's favorite movies as input and generates recommendations based on those favorites. The response is a JSON array of recommended movie objects.
 

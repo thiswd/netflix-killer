@@ -29,10 +29,4 @@ class RentalsController < ApplicationController
   def movie_id
     params[:rental][:movie_id]
   end
-
-  private
-
-  def set_user
-    @user ||= User.find(params[:user_id])
-  end
 end

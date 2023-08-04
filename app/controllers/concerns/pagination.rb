@@ -34,10 +34,4 @@ module Pagination
       records.order("#{order_by}": order_direction)
     end
   end
-
-  private
-
-  def model
-    controller_name.classify.constantize
-  end
 end
