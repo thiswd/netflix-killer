@@ -4,10 +4,4 @@ class MoviesController < ApplicationController
     @paginated_movies = paginate.call(@movies)
     render json: @paginated_movies
   end
-
-  def recommendations
-    favorite_movies = User.find(params[:user_id]).favorites
-    @recommendations = RecommendationEngine.new(favorite_movies).recommendations
-    render json: @recommendations
-  end
 end
